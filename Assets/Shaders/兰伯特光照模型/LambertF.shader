@@ -48,7 +48,9 @@ Shader "Study/LambertF"
             {
                 //在片元着色器里计算光照方向
                 float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
-                fixed3 color = _LightColor0.rgb * _MainColor.rgb * max(0,dot(i.normal,lightDir));
+                //这里别忘了需要对顶点着色器传来的，插值后的法线进行归一化
+                float3 worldNormal = normalize(i.normal);
+                fixed3 color = _LightColor0.rgb * _MainColor.rgb * max(0,dot(worldNormal,lightDir));
                 color = color + UNITY_LIGHTMODEL_AMBIENT;
                 return fixed4(color,1);
             }
