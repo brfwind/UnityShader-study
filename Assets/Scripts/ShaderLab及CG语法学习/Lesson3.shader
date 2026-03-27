@@ -26,14 +26,21 @@ Shader "TeachShader/Lesson3"
             "RenderType"="Opaque" 
             "Queue"="Background"
              }
-             
+
         LOD 100
+        Cull Off  //是否剔除内/外部（默认剔除内部）
+        ZWrite On  //是否开启写入深度缓冲（默认开启）
+        //ZTest xx  决定是否写入深度缓冲的比较规则（默认小于等于）
+        //Blend xx  设置渲染图象的颜色混合方式（默认不混合）
 
         Pass
         {
+            Name "MYPASS"
             CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+            #pragma vertex vert     //顶点着色器声明
+            #pragma fragment frag   //片元着色器声明
+
+            
             // make fog work
             #pragma multi_compile_fog
 
@@ -75,4 +82,6 @@ Shader "TeachShader/Lesson3"
             ENDCG
         }
     }
+
+    Fallback "VertexLit"
 }
