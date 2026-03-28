@@ -1,4 +1,4 @@
-Shader "Study/LambertF"
+Shader "Study/Lambert+"
 {
     //和逐顶点的区别在于
     //1.在顶点着色器中计算顶点和法线
